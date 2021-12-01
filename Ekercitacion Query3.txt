@@ -1,0 +1,17 @@
+/*Nombre, apellido y fecha de nacimiento de todos los empleados, ordenado por fecha de nacimiento ascendente*/
+select nombre, apellido, fecha_nacimiento from pruebasql.profesor order by fecha_nacimiento asc
+
+/*Todos los profesores cuyo salario sea mayor o igual a 65000*/
+select * from pruebasql.profesor where salario>=65000
+
+/*Todos los profesores que nacieron en la década del 80.*/
+select * from pruebasql.profesor where year(fecha_nacimiento) between 1980 and 1989
+
+/*5 registros*/
+select * from pruebasql.profesor limit 5
+
+/*Todos los profesores cuyo apellido inicie con la letra “P”*/
+select * from pruebasql.profesor where apellido like 'p%'
+
+/*Los profesores que nacieron en la década del 80 y tienen un salario mayor a 80000*/
+select * from pruebasql.profesor where (year(fecha_nacimiento) between 1980 and 1989) and (salario>80000)
