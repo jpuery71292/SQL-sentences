@@ -1,0 +1,4 @@
+/*left join entre tablas */
+/*image ejercicio.jpg*/
+SELECT a.Apellido , b.Nombre, b.turno
+FROM pruebasql.profesor a LEFT JOIN pruebasql.curso b ON a.id = b.PROFESORid
