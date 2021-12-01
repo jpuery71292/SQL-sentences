@@ -1,0 +1,27 @@
+/*Cree una tabla llamada CURSO*/
+CREATE table CURSO (
+  CodCurso int PRIMARY key NOT NULL,
+  Nombre varchar(250) NOT NULL,
+  Descripcion varchar(250),
+  Turno varchar(250) NOT NULL
+ )
+
+/*Agregue un campo “cupo” de tipo numérico*/
+alter TABLE CURSO
+add Cupo int 
+
+/*Inserte datos en la tabla*/
+INSERT into CURSO values (101, "Algoritmos","Algoritmos y Estructuras de Datos","Mañana",35)
+INSERT into CURSO values (102, "Matemática Discreta","","Tarde",30)
+
+/*Intente ingresar un registro con el nombre nulo y verifique que no funciona*/
+insert into CURSO (codcurso, descripcion, turno, cupo) values (103,'Prueba de ingreso nombre nulo', 'mañana', 35)
+
+/*Intente ingresar un registro con la clave primaria repetida y verifique que no funciona.*/
+INSERT into CURSO values (101, "Algoritmos","Algoritmos y Estructuras de Datos","Mañana",35)
+
+/*Actualice, para todos los cursos, el cupo en 25*/
+update CURSO set cupo = 25 
+
+/*Elimine el curso Algoritmos*/
+delete from curso where nombre="Algoritmos"
