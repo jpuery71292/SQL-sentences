@@ -1,13 +1,16 @@
 /*Escriba una consulta que devuelva la cantidad de 
 profesores que dictan más de un curso en el turno Noche*/
-select count(*) from profesor a
-inner join (select count(profesorID) CursosNoche, profesorID from curso where turno = "Noche" group by profesorID) b
-on (a.ID=b.profesorID)
-where b.CursosNoche > 1
+select 
+	count(a.id), a.nombre, a.apellido, b.turno
+from profesor a inner join  curso b
+	on (a.ID=b.profesorID)
+where b.turno="Noche"
+group by a.nombre, a.apellido, b.turno
+having count(b.turno)>1
 
 
 /*Escriba una consulta para obtener la información 
 de todos los estudiantes que no realizan el curso con código 105*/
-select a.legajo, a.nombre, a.apellido, a.carrera from estudiante a
-inner join (select distinct(legajo) from inscripcion where curso_codigo <> 105) b
-on (a.legajo=b.legajo)
+select * 
+from estudiante 
+where legajo not in (select legajo from inscripcion where curso_codigo=105)
