@@ -20,9 +20,11 @@ inner join curso b on (a.id=b.profesorID) order by b.nombre
 
 /*Cupo disponible para cada curso (Si el cupo es de 
 35 estudiantes y hay 5 inscriptos, el cupo disponible será 30)*/
-select a.nombre, a.cupo, count(b.curso_codigo) as ocupado,  
-a.cupo-count(b.curso_codigo) as disponible from curso a
-inner join inscripcion b on (a.cod_curso=b.curso_codigo) group by b.curso_codigo
+select 
+a.nombre, a.cupo, count(b.curso_codigo) as ocupado,  
+a.cupo-count(b.curso_codigo) as disponible 
+from curso a left join inscripcion b 
+on (a.cod_curso = b.curso_codigo) group by a.cod_curso
 
 /*Cursos cuyo cupo disponible sea menor a 10*/
 select * from
