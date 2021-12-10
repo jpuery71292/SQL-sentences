@@ -1,12 +1,13 @@
 /*Escriba una consulta que devuelva la cantidad de 
 profesores que dictan más de un curso en el turno Noche*/
+select count(*) as cantidad from(
 select 
-	count(a.id), a.nombre, a.apellido, b.turno
-from profesor a inner join  curso b
+	 a.nombre
+from profesor a inner join curso b
 	on (a.ID=b.profesorID)
 where b.turno="Noche"
-group by a.nombre, a.apellido, b.turno
-having count(b.turno)>1
+group by a.nombre
+having count(b.turno)>1) as Tabla
 
 
 /*Escriba una consulta para obtener la información 
