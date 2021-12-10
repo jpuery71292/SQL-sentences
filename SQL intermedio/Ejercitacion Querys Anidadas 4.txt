@@ -1,0 +1,24 @@
+/*Escriba una consulta que devuelva el legajo y 
+la cantidad de cursos que realiza cada estudiante*/
+select a.legajo, count(curso_codigo) as cursos from estudiante a
+inner join inscripcion b on (a.legajo=b.legajo) group by a.legajo
+
+/*Escriba una consulta que devuelva el legajo y 
+la cantidad de cursos de los estudiantes que realizan más de un curso*/
+select * from (
+select a.legajo, count(curso_codigo) as cursos from estudiante a
+inner join inscripcion b on (a.legajo=b.legajo) group by a.legajo
+) as AlumnoCurso where cursos > 1
+
+/*Escriba una consulta que devuelva la información 
+de los estudiantes que no realizan ningún curso*/
+select * from estudiante
+where legajo not in (select legajo from inscripcion)
+
+/*Liste toda la información sobre los estudiantes que 
+realizan cursos con los profesores de apellido “Pérez” y “Paz”*/
+select a.curso_codigo, b.legajo, b.nombre, b.apellido, b.carrera from inscripcion a
+inner join estudiante b on (a.legajo=b.legajo)
+where a.curso_codigo in (select cod_curso from curso a
+inner join profesor b on (a.profesorID=b.id)
+where b.apellido='Perez' or b.apellido='Paz')
